@@ -1,0 +1,179 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    font-family: "Anton", sans-serif;
+    background-color: #E5E5E5;
+}
+
+.header {
+    position: relative;
+    height: 667px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.header-bg {
+    position: absolute;
+    object-fit: cover;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    overflow: unset;
+}
+
+.navbar {
+    padding-top: 43px;
+    padding-left: 69px;
+}
+
+.logo {
+    text-decoration: none;
+    color: white;
+    font-size: 28px;
+    font-weight:bolder;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.header-content h1 {
+    font-size: 44px;
+    color: yellow;
+    margin-top: -30px;
+}
+
+.header-content h1 span {
+    padding-left: 25px;
+}
+
+.search-bar {
+    padding-top: 30px;
+    padding-right: 70px;
+    position: relative;
+}
+
+.search-bar input {
+    width: 920px;
+    border-radius: 12px;
+    border: none;
+    height: 70px;
+    margin-left: 70px;
+    padding-left: 35px;
+    font-size: 17px;
+}
+
+.search-bar button {
+    padding: 15px 15px;
+    border-radius: 12px;
+    transform: translateX(-120%);
+    background: black;
+    color: white;
+    border: none;
+    position: absolute;
+    top: 38px;
+}
+
+.search-bar i {
+    font-size: 22px;
+}
+
+.selects {
+    display: flex;
+    gap: 63px;
+    padding-bottom: 17px;
+}
+
+#select-all {
+    border: none;
+    border-radius: 10px;
+    padding: 18px 83px 18px 5px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+}
+
+.selects-recettes {
+    height: 115px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 105px;
+    margin-right: 105px;
+}
+
+.nombre-recettes {
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+
+.recettes-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 16px;
+    margin-left: 100px;
+    margin-right: 100px;
+    gap: 50px;
+}
+
+.card {
+    max-width: 381px;
+    margin-bottom: 15px;
+}
+
+.photo-plat {
+    width: 381px;
+    height: 254px;
+}
+
+.photo-plat img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.card-content {
+    background-color: white;
+    height: 480px;
+    border-radius: 0px 0px 20px 20px;
+}
+
+.titre-plat {
+    padding-top: 32px;
+    margin-left: 27px;
+    font-size: 18px;
+}
+
+.titre {
+    margin-left: 27px;
+    margin-top: 22px;
+}
+
+.desc {
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.grid-ingrédient {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.info-ingredient {
+    margin-left: 27px;
+    margin-top: 20px;
+}
+
