@@ -52,7 +52,7 @@ function recipeCards(recipe) {
 
     const quantityP = document.createElement('p')
     quantityP.classList.add('dose-ingredient')
-    quantityP.textContent = `${ingredients.quantity} ${ingredients.unit}`
+    quantityP.textContent = `${ingredients.quantity || ""} ${ingredients.unit || ""}`
 
     infoDiv.appendChild(nameP)
     infoDiv.appendChild(quantityP)
