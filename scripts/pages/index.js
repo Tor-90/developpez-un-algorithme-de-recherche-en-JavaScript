@@ -3,7 +3,7 @@ function getRecipes() {
 }
 
 const container = document.getElementById('recettes-container')
-function displayRecipes() {
+function displayRecipes(recipes) {
   container.innerHTML = ""
   recipes.forEach(recipe => {
     container.appendChild(recipeCards(recipe))
@@ -24,15 +24,40 @@ barreRecherche.addEventListener("input", () => {
     resultatRecherche = recipes.filter(recette => {
       const searchName = recette.name.includes(inputRecherche)
       const searchDescription = recette.description.includes(inputRecherche)
-      //const searchIngredients = recette.ingredients.includes(inputRecherche)
       return searchName || searchDescription
     })
   }
 
-  container.innerHTML = ""
-  resultatRecherche.forEach(recipe => {
-    container.appendChild(recipeCards(recipe))
-  })
+  displayRecipes(resultatRecherche)
 })
 
-displayRecipes()
+function selects() {
+  const selectIngredients = document.getElementById("ingredients")
+  const selectAppareils = document.getElementById("appareils")
+  const selectUstensiles = document.getElementById("ustensiles")
+
+  recipes.forEach(recette => {
+    recette.ingredients.forEach(ingredient => {
+      const optionIngredients = document.createElement("option")
+      optionIngredients.textContent = ingredient.ingredient
+      selectIngredients.appendChild(optionIngredients)
+    })
+
+    const optionAppareil = document.createElement("option")
+    optionAppareil.textContent = recette.appliance
+    selectAppareils.appendChild(optionAppareil)
+
+    recette.ustensils.forEach(ustensils => {
+      const optionUstensils = document.createElement("option")
+      optionUstensils.textContent = ustensils
+      selectUstensiles.appendChild(optionUstensils)
+    })
+  })
+}
+
+function init() {
+  displayRecipes(recipes)
+  selects()
+}
+
+init()

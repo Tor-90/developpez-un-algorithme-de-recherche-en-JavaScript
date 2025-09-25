@@ -92,7 +92,7 @@ body {
     padding-bottom: 17px;
 }
 
-#select-all {
+#ingredients, #appareils, #ustensiles {
     border: none;
     border-radius: 10px;
     padding: 18px 83px 18px 5px;
@@ -100,6 +100,7 @@ body {
     font-weight: 500;
     cursor: pointer;
     text-align: left;
+    width: 200px;
 }
 
 .selects-recettes {
