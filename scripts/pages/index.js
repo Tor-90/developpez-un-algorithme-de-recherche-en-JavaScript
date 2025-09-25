@@ -31,28 +31,48 @@ barreRecherche.addEventListener("input", () => {
   displayRecipes(resultatRecherche)
 })
 
-function selects() {
-  const selectIngredients = document.getElementById("ingredients")
-  const selectAppareils = document.getElementById("appareils")
-  const selectUstensiles = document.getElementById("ustensiles")
+const selectIngredients = document.getElementById("ingredients")
+const selectAppareils = document.getElementById("appareils")
+const selectUstensiles = document.getElementById("ustensiles")
+const tagContainer = document.getElementById("tags-container")
 
+function selects() {
+  const memoIngredients = []
+  const memoAppareils = []
+  const memoUstensils = []
   recipes.forEach(recette => {
     recette.ingredients.forEach(ingredient => {
       const optionIngredients = document.createElement("option")
-      optionIngredients.textContent = ingredient.ingredient
-      selectIngredients.appendChild(optionIngredients)
+      if (!memoIngredients.includes(ingredient.ingredient)) {
+        memoIngredients.push(ingredient.ingredient)
+        optionIngredients.textContent = ingredient.ingredient
+        selectIngredients.appendChild(optionIngredients)
+      }
     })
 
     const optionAppareil = document.createElement("option")
-    optionAppareil.textContent = recette.appliance
-    selectAppareils.appendChild(optionAppareil)
+    if (!memoAppareils.includes(recette.appliance)) {
+      memoAppareils.push(recette.appliance)
+      optionAppareil.textContent = recette.appliance
+      selectAppareils.appendChild(optionAppareil)
+    }
 
     recette.ustensils.forEach(ustensils => {
       const optionUstensils = document.createElement("option")
-      optionUstensils.textContent = ustensils
-      selectUstensiles.appendChild(optionUstensils)
+      if (!memoUstensils.includes(ustensils)) {
+        memoUstensils.push(ustensils)
+        optionUstensils.textContent = ustensils
+        selectUstensiles.appendChild(optionUstensils)
+      }
     })
   })
+}
+
+function createTag(tagContent) {
+  const tag = document.createElement("article")
+  tag.classList.add("tag")
+  tag.textContent = tagContent
+  tagContainer.appendChild(tag)
 }
 
 function init() {
