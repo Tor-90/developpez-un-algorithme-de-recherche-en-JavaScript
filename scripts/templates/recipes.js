@@ -1,48 +1,53 @@
 function recipeCards(recipe) {
 
-    const article = document.createElement('article')
-    article.classList.add('card')
+  const article = document.createElement('article')
+  article.classList.add('card')
 
-    const photoDiv = document.createElement('div')
-    photoDiv.classList.add('photo-plat')
+  const photoDiv = document.createElement('div')
+  photoDiv.classList.add('photo-plat')
 
-    const img = document.createElement('img')
-    img.setAttribute('src', `assets/images/${recipe.image}`)
-    img.setAttribute('alt', recipe.name)
-    photoDiv.appendChild(img)
+  const img = document.createElement('img')
+  img.setAttribute('src', `assets/images/${recipe.image}`)
+  img.setAttribute('alt', recipe.name)
+  photoDiv.appendChild(img)
 
-    const contentDiv = document.createElement('div')
-    contentDiv.classList.add('card-content')
+  const timer = document.createElement('div')
+  timer.classList.add('timer')
+  timer.textContent = `${recipe.time} min`
+  photoDiv.appendChild(timer)
 
-    const title = document.createElement('p')
-    title.classList.add('titre-plat')
-    title.textContent = recipe.name
+  const contentDiv = document.createElement('div')
+  contentDiv.classList.add('card-content')
 
-    const descriptionDiv = document.createElement('div')
-    descriptionDiv.classList.add('description')
+  const title = document.createElement('p')
+  title.classList.add('titre-plat')
+  title.textContent = recipe.name
 
-    const descriptionTitle = document.createElement('p')
-    descriptionTitle.classList.add('titre')
-    descriptionTitle.textContent = "RECETTE"
+  const descriptionDiv = document.createElement('div')
+  descriptionDiv.classList.add('description')
 
-    const descriptionText = document.createElement('p')
-    descriptionText.classList.add('desc')
-    descriptionText.textContent = recipe.description
+  const descriptionTitle = document.createElement('p')
+  descriptionTitle.classList.add('titre')
+  descriptionTitle.textContent = "RECETTE"
 
-    descriptionDiv.appendChild(descriptionTitle)
-    descriptionDiv.appendChild(descriptionText)
+  const descriptionText = document.createElement('p')
+  descriptionText.classList.add('desc')
+  descriptionText.textContent = recipe.description
 
-    const ingredientsDiv = document.createElement('div')
-    ingredientsDiv.classList.add('ingredients')
+  descriptionDiv.appendChild(descriptionTitle)
+  descriptionDiv.appendChild(descriptionText)
 
-    const ingredientsTitle = document.createElement('p')
-    ingredientsTitle.classList.add('titre')
-    ingredientsTitle.textContent = "INGRÉDIENTS"
+  const ingredientsDiv = document.createElement('div')
+  ingredientsDiv.classList.add('ingredients')
 
-    const ingredientsGrid = document.createElement('div')
-    ingredientsGrid.classList.add('grid-ingrédient')
-    
-    recipe.ingredients.forEach(ingredients => {
+  const ingredientsTitle = document.createElement('p')
+  ingredientsTitle.classList.add('titre')
+  ingredientsTitle.textContent = "INGRÉDIENTS"
+
+  const ingredientsGrid = document.createElement('div')
+  ingredientsGrid.classList.add('grid-ingrédient')
+
+  recipe.ingredients.forEach(ingredients => {
     const infoDiv = document.createElement('div')
     infoDiv.classList.add('info-ingredient')
 

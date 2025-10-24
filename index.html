@@ -10,6 +10,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <title>Test</title>
 </head>
 
@@ -18,7 +21,7 @@
     <img src="assets/images/baniere.jpg" alt="Image de la bannière" class="header-bg">
 
     <nav class="navbar">
-      <a href="#" class="logo">LES PETITS PLATS</a>
+      <img src="assets/images/Logo.png" href="#" class="logo">
     </nav>
 
     <div class="header-content">
@@ -38,24 +41,24 @@
   <main>
     <section class="selects-recettes">
       <div class="selects">
-        <div class="select-ingredients">
-          <select id="ingredients" name="ingredients">
-            <option disabled selected>Ingrédients</option>
-          </select>
+        <div class="select" id="select-ingredients">
+          <div class="select-name" id="select-all">Ingrédients<i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="select-options" id="ingredients-options"></div>
         </div>
-        <div class="select-appareils">
-          <select id="appareils" name="appareils">
-            <option disabled selected>Appareils</option>
-          </select>
+        <div class="select" id="select-appareils">
+          <div class="select-name" id="select-all">Appareils<i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="select-options" id="appareils-options"></div>
         </div>
-        <div class="select-ustensiles">
-          <select id="ustensiles" name="ustensiles">
-            <option disabled selected>Ustensiles</option>
-          </select>
+        <div class="select" id="select-ustensiles">
+          <div class="select-name" id="select-all">Ustensiles<i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="select-options" id="ustensiles-options"></div>
         </div>
+        <div class="nombre-recettes"></div>
       </div>
       <div class="tags-container" id="tags-container"></div>
-      <div class="nombre-recettes">1500 recettes</div>
     </section>
 
     <section class="recettes-cards" id="recettes-container">
