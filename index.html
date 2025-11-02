@@ -4,15 +4,11 @@
 <head>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <meta charset="utf-8">
-  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap"
     rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <title>Test</title>
 </head>
 
@@ -21,7 +17,9 @@
     <img src="assets/images/baniere.jpg" alt="Image de la bannière" class="header-bg">
 
     <nav class="navbar">
-      <img src="assets/images/Logo.png" href="#" class="logo">
+      <a href="index.html">
+        <img src="assets/images/Logo.png" alt="Logo" class="logo">
+      </a>
     </nav>
 
     <div class="header-content">
@@ -31,6 +29,7 @@
 
       <div class="search-bar">
         <input type="text" id="search" placeholder="Rechercher une recette, un ingrédient ..." />
+        <i id="clear-search" class="fa-solid fa-xmark"></i>
         <button>
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
@@ -42,19 +41,28 @@
     <section class="selects-recettes">
       <div class="selects">
         <div class="select" id="select-ingredients">
-          <div class="select-name" id="select-all">Ingrédients<i class="fa-solid fa-chevron-down"></i>
+          <div class="select-name" id="select-all">Ingrédients<i class="fa-solid fa-chevron-down"></i></div>
+          <div class="select-options" id="ingredients-options">
+            <input class="inputSelect">
+            <div id="option-selected-ingredients"></div>
+            <div id="option-ingredients"></div>
           </div>
-          <div class="select-options" id="ingredients-options"></div>
         </div>
         <div class="select" id="select-appareils">
-          <div class="select-name" id="select-all">Appareils<i class="fa-solid fa-chevron-down"></i>
+          <div class="select-name" id="select-all">Appareils<i class="fa-solid fa-chevron-down"></i></div>
+          <div class="select-options" id="appareils-options">
+            <input class="inputSelect">
+            <div id="option-selected-appareils"></div>
+            <div id="option-appareils"></div>
           </div>
-          <div class="select-options" id="appareils-options"></div>
         </div>
         <div class="select" id="select-ustensiles">
-          <div class="select-name" id="select-all">Ustensiles<i class="fa-solid fa-chevron-down"></i>
+          <div class="select-name" id="select-all">Ustensiles<i class="fa-solid fa-chevron-down"></i></div>
+          <div class="select-options" id="ustensiles-options">
+            <input class="inputSelect">
+            <div id="option-selected-ustensiles"></div>
+            <div id="option-ustensiles"></div>
           </div>
-          <div class="select-options" id="ustensiles-options"></div>
         </div>
         <div class="nombre-recettes"></div>
       </div>

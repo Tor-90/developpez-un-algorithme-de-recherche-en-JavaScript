@@ -40,6 +40,12 @@ const selectIngredients = document.getElementById("ingredients-options")
 const selectAppareils = document.getElementById("appareils-options")
 const selectUstensiles = document.getElementById("ustensiles-options")
 const tagContainer = document.getElementById("tags-container")
+const selectedOptionIngredients = document.getElementById("option-selected-ingredients")
+const selectedOptionAppareils = document.getElementById("option-selected-appareils")
+const selectedOptionUstensiles = document.getElementById("option-selected-ustensiles")
+const unselectedOptionIngredients = document.getElementById("option-ingredients")
+const unselectedOptionAppareils = document.getElementById("option-appareils")
+const unselectedOptionUstensiles = document.getElementById("option-ustensiles")
 
 function createOption(parent, text, type) {
   const option = document.createElement("div")
@@ -49,14 +55,19 @@ function createOption(parent, text, type) {
     createTag(text, type)
     if (type === "ingredient") {
       criteres.ingredients.push(text)
+      selectedOptionIngredients.appendChild(option)
+      option.classList.add("selected")
     }
     else if (type === "appareil") {
       criteres.appareils.push(text)
+      selectedOptionAppareils.appendChild(option)
+      option.classList.add("selected")
     }
     else if (type === "ustensile") {
       criteres.ustensils.push(text)
+      selectedOptionUstensiles.appendChild(option)
+      option.classList.add("selected")
     }
-    option.classList.add("hidden")
     filterRecipes()
   })
   parent.appendChild(option)
@@ -114,6 +125,7 @@ function createTag(tagContent, type) {
 
   const closeBtn = document.createElement("i")
   closeBtn.classList.add("fa-solid", "fa-xmark")
+  closeBtn.style.cursor = "pointer"
 
   closeBtn.addEventListener("click", () => {
     tag.remove()
@@ -122,18 +134,27 @@ function createTag(tagContent, type) {
         return index == tagContent
       })
       criteres.ingredients.splice(indexIngredient, 1)
+      const option = selectIngredients.querySelector(".selected")
+      option.classList.remove("selected")
+      unselectedOptionIngredients.appendChild(option)
     }
     else if (type === "appareil") {
       indexAppareil = criteres.appareils.findIndex(index => {
         index == tagContent
       })
       criteres.appareils.splice(indexAppareil, 1)
+      const option = selectAppareils.querySelector(".selected")
+      option.classList.remove("selected")
+      unselectedOptionAppareils.appendChild(option)
     }
     else if (type === "ustensile") {
       indexUstensils = criteres.ustensils.findIndex(index => {
         index == tagContent
       })
       criteres.ustensils.splice(indexUstensils, 1)
+      const option = selectUstensiles.querySelector(".selected")
+      option.classList.remove("selected")
+      unselectedOptionUstensiles.appendChild(option)
     }
 
     const allOptions = document.querySelectorAll(".option")
@@ -143,7 +164,7 @@ function createTag(tagContent, type) {
       }
     })
 
-    
+
     filterRecipes()
   })
 
@@ -204,6 +225,32 @@ function numberPlat(recettes) {
   compteurRecette.textContent = `${recettes.length} recettes`
 
 }
+
+const searchBar = document.getElementById("search")
+const clearButton = document.getElementById("clear-search")
+
+searchBar.addEventListener("focus", () => {
+  searchBar.placeholder = ""
+})
+
+searchBar.addEventListener("blur", () => {
+  searchBar.placeholder = "Rechercher une recette, un ingrédient ..."
+})
+
+
+searchBar.addEventListener("input", () => {
+  if (searchBar.value.length > 0) {
+    clearButton.style.display = "inline"
+  } else {
+    clearButton.style.display = "none"
+  }
+})
+
+clearButton.addEventListener("click", () => {
+  searchBar.value = ""
+  clearButton.style.display = "none"
+  displayRecipes(recipes)
+})
 
 function init() {
   displayRecipes(recipes)
