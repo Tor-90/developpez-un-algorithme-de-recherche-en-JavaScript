@@ -124,21 +124,25 @@ body {
     background: white;
     border: 1px solid #ccc;
     border-radius: 10px;
-    max-height: 200px;
+    max-height: 190px;
     overflow-y: auto;
     z-index: 10;
 }
 
 .option {
-    padding: 10px;
+    padding-left: 10px;
+    padding-bottom: 5px;
 }
 
 .selected {
     background-color: #FFD15B;
     padding: 10px;
+    margin-bottom: 5px;
 }
 
-#option-selected-ingredients, #option-selected-appareils, #option-selected-ustensiles {
+#option-selected-ingredients,
+#option-selected-appareils,
+#option-selected-ustensiles {
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -229,13 +233,17 @@ body {
 }
 
 .desc {
-  position: relative;
-  margin-left: 25px;
-  margin-right: 25px;
-  margin-top: 8px;
-  font-size: 14px;
-  max-height: 80px;
-  overflow: hidden;
+    position: relative;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 8px;
+    font-size: 14px;
+    max-height: 80px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .grid-ingrédient {
