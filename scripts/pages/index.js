@@ -36,9 +36,9 @@ barreRecherche.addEventListener("input", () => {
   filterRecipes()
 })
 
-const selectIngredients = document.getElementById("ingredients-options")
-const selectAppareils = document.getElementById("appareils-options")
-const selectUstensiles = document.getElementById("ustensiles-options")
+const selectIngredients = document.getElementById("option-ingredients")
+const selectAppareils = document.getElementById("option-appareils")
+const selectUstensiles = document.getElementById("option-ustensiles")
 const tagContainer = document.getElementById("tags-container")
 const selectedOptionIngredients = document.getElementById("option-selected-ingredients")
 const selectedOptionAppareils = document.getElementById("option-selected-appareils")
@@ -55,18 +55,24 @@ function createOption(parent, text, type) {
     createTag(text, type)
     if (type === "ingredient") {
       criteres.ingredients.push(text)
-      selectedOptionIngredients.appendChild(option)
-      option.classList.add("selected")
+      option.classList.add("selected", "hidden")
+      const cloneOption = option.cloneNode(true)
+      cloneOption.classList.remove("hidden")
+      selectedOptionIngredients.appendChild(cloneOption)
     }
     else if (type === "appareil") {
       criteres.appareils.push(text)
-      selectedOptionAppareils.appendChild(option)
-      option.classList.add("selected")
+      option.classList.add("selected", "hidden")
+      const cloneOption = option.cloneNode(true)
+      cloneOption.classList.remove("hidden")
+      selectedOptionAppareils.appendChild(cloneOption)
     }
     else if (type === "ustensile") {
       criteres.ustensils.push(text)
-      selectedOptionUstensiles.appendChild(option)
-      option.classList.add("selected")
+      option.classList.add("selected", "hidden")
+      const cloneOption = option.cloneNode(true)
+      cloneOption.classList.remove("hidden")
+      selectedOptionUstensiles.appendChild(cloneOption)
     }
     filterRecipes()
   })
@@ -134,36 +140,39 @@ function createTag(tagContent, type) {
         return index == tagContent
       })
       criteres.ingredients.splice(indexIngredient, 1)
-      const option = selectIngredients.querySelector(".selected")
-      option.classList.remove("selected")
-      unselectedOptionIngredients.appendChild(option)
     }
     else if (type === "appareil") {
       indexAppareil = criteres.appareils.findIndex(index => {
         index == tagContent
       })
       criteres.appareils.splice(indexAppareil, 1)
-      const option = selectAppareils.querySelector(".selected")
-      option.classList.remove("selected")
-      unselectedOptionAppareils.appendChild(option)
     }
     else if (type === "ustensile") {
       indexUstensils = criteres.ustensils.findIndex(index => {
         index == tagContent
       })
       criteres.ustensils.splice(indexUstensils, 1)
-      const option = selectUstensiles.querySelector(".selected")
-      option.classList.remove("selected")
-      unselectedOptionUstensiles.appendChild(option)
     }
 
     const allOptions = document.querySelectorAll(".option")
     allOptions.forEach(option => {
       if (option.textContent === tagContent) {
         option.classList.remove("hidden")
+        option.classList.remove("selected")
       }
     })
 
+    let selectedContainer
+    if (type === "ingredient") selectedContainer = selectedOptionIngredients
+    else if (type === "appareil") selectedContainer = selectedOptionAppareils
+    else if (type === "ustensile") selectedContainer = selectedOptionUstensiles
+
+    const clones = selectedContainer.querySelectorAll(".option")
+    clones.forEach(clone => {
+      if (clone.textContent === tagContent) {
+        clone.remove()
+      }
+    })
 
     filterRecipes()
   })
@@ -218,6 +227,7 @@ function filterRecipes() {
   })
 
   displayRecipes(resultatRecherche)
+  actualSelects(resultatRecherche)
 }
 
 function numberPlat(recettes) {
@@ -251,6 +261,38 @@ clearButton.addEventListener("click", () => {
   clearButton.style.display = "none"
   displayRecipes(recipes)
 })
+
+function actualSelects(recipesFilter) {
+
+  selectIngredients.innerHTML = ""
+  selectAppareils.innerHTML = ""
+  selectUstensiles.innerHTML = ""
+
+  const memoIngredients = []
+  const memoAppareils = []
+  const memoUstensils = []
+
+  recipesFilter.forEach(recipe => {
+    recipe.ingredients.forEach(ingredient => {
+      if(!memoIngredients.includes(ingredient.ingredient)){
+        memoIngredients.push(ingredient.ingredient)
+        createOption(selectIngredients, ingredient.ingredient, "ingredient")
+      }
+    })
+
+    if(!memoAppareils.includes(recipe.appliance)){
+      memoAppareils.push(recipe.appliance)
+      createOption(selectAppareils, recipe.appliance, "appareil")
+    }
+
+    recipe.ustensils.forEach(ustensil => {
+      if(!memoUstensils.includes(ustensil)){
+        memoUstensils.push(ustensil)
+        createOption(selectUstensiles, ustensil, "ustensile")
+      }
+    })
+  })
+}
 
 function init() {
   displayRecipes(recipes)
