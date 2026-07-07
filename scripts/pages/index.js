@@ -238,6 +238,8 @@ function numberPlat(recettes) {
 
 const searchBar = document.getElementById("search")
 const clearButton = document.getElementById("clear-search")
+const searchInput = document.querySelectorAll(".inputSelect")
+const clearButtonSelects = document.querySelectorAll(".clear-select")
 
 searchBar.addEventListener("focus", () => {
   searchBar.placeholder = ""
@@ -260,6 +262,23 @@ clearButton.addEventListener("click", () => {
   searchBar.value = ""
   clearButton.style.display = "none"
   displayRecipes(recipes)
+})
+
+searchInput.forEach((input, index) => {
+  input.addEventListener("input", () => {
+    if (input.value.length > 0) {
+      clearButtonSelects[index].style.display = "inline"
+    } else {
+      clearButtonSelects[index].style.display = "none"
+    }
+  })
+})
+
+clearButtonSelects.forEach((clearButtonSelect, index) => {
+  clearButtonSelect.addEventListener("click", () => {
+    searchInput[index].value = ""
+    clearButtonSelect.style.display = "none"
+  })
 })
 
 function actualSelects(recipesFilter) {

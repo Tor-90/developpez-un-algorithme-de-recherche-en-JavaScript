@@ -286,3 +286,13 @@ body {
     color: grey;
     font-size: 16px;
 }
+
+i.clear-select {
+    position: absolute;
+    right: 10px;
+    top: 17px;
+    cursor: pointer;
+    display: none;
+    color: grey;
+    font-size: 14px;
+}
