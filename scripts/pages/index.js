@@ -184,11 +184,13 @@ function createTag(tagContent, type) {
 function filterRecipes() {
   let resultatRecherche = []
 
-  resultatRecherche = recipes.filter(recette => {
+for (let i = 0; i < recipes.length; i++) {
+    const recette = recipes[i]
     const searchName = recette.name.includes(criteres.text)
     const searchDescription = recette.description.includes(criteres.text)
-    return searchName || searchDescription
-  })
+    if (searchName || searchDescription) {
+      resultatRecherche.push(recette)
+    }}
 
   resultatRecherche = resultatRecherche.filter(recette => {
     let match = true
