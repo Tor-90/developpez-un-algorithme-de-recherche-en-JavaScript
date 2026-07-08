@@ -274,10 +274,37 @@ searchInput.forEach((input, index) => {
   })
 })
 
+const selectContainers = [
+  selectIngredients,
+  selectAppareils,
+  selectUstensiles
+]
+
+searchInput.forEach((input, index) => {
+  input.addEventListener("input", () => {
+    filterSelectOptions(input, selectContainers[index])
+  })
+})
+
+function filterSelectOptions(input, selectContainer) {
+  const filterValue = input.value.toLowerCase()
+  const options = selectContainer.querySelectorAll(".option")
+
+  options.forEach(option => {
+    const optionText = option.textContent.toLowerCase()
+    if (optionText.includes(filterValue)) {
+      option.style.display = "block"
+    } else {
+      option.style.display = "none"
+    }
+  })
+}
+
 clearButtonSelects.forEach((clearButtonSelect, index) => {
   clearButtonSelect.addEventListener("click", () => {
     searchInput[index].value = ""
     clearButtonSelect.style.display = "none"
+    filterSelectOptions(searchInput[index], selectContainers[index])
   })
 })
 

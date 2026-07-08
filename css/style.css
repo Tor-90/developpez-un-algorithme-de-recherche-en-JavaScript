@@ -117,10 +117,6 @@ body {
 
 .select-options {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
     background: white;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -289,10 +285,19 @@ body {
 
 i.clear-select {
     position: absolute;
-    right: 10px;
-    top: 17px;
+    right: 45px;
+    top: 66px;
     cursor: pointer;
     display: none;
+    color: grey;
+    font-size: 14px;
+}
+
+i.searchSelect {
+    position: absolute;
+    right: 25px;
+    top: 66px;
+    cursor: pointer;
     color: grey;
     font-size: 14px;
 }
