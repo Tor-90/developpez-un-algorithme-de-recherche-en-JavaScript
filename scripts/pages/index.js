@@ -184,13 +184,14 @@ function createTag(tagContent, type) {
 function filterRecipes() {
   let resultatRecherche = []
 
-for (let i = 0; i < recipes.length; i++) {
+  for (let i = 0; i < recipes.length; i++) {
     const recette = recipes[i]
-    const searchName = recette.name.includes(criteres.text)
-    const searchDescription = recette.description.includes(criteres.text)
+    const searchName = recette.name.toLowerCase().includes(criteres.text.toLowerCase())
+    const searchDescription = recette.description.toLowerCase().includes(criteres.text.toLowerCase())
     if (searchName || searchDescription) {
       resultatRecherche.push(recette)
-    }}
+    }
+  }
 
   resultatRecherche = resultatRecherche.filter(recette => {
     let match = true
@@ -262,8 +263,9 @@ searchBar.addEventListener("input", () => {
 
 clearButton.addEventListener("click", () => {
   searchBar.value = ""
+  criteres.text = ""
   clearButton.style.display = "none"
-  displayRecipes(recipes)
+  filterRecipes()
 })
 
 searchInput.forEach((input, index) => {
@@ -322,19 +324,19 @@ function actualSelects(recipesFilter) {
 
   recipesFilter.forEach(recipe => {
     recipe.ingredients.forEach(ingredient => {
-      if(!memoIngredients.includes(ingredient.ingredient)){
+      if (!memoIngredients.includes(ingredient.ingredient)) {
         memoIngredients.push(ingredient.ingredient)
         createOption(selectIngredients, ingredient.ingredient, "ingredient")
       }
     })
 
-    if(!memoAppareils.includes(recipe.appliance)){
+    if (!memoAppareils.includes(recipe.appliance)) {
       memoAppareils.push(recipe.appliance)
       createOption(selectAppareils, recipe.appliance, "appareil")
     }
 
     recipe.ustensils.forEach(ustensil => {
-      if(!memoUstensils.includes(ustensil)){
+      if (!memoUstensils.includes(ustensil)) {
         memoUstensils.push(ustensil)
         createOption(selectUstensiles, ustensil, "ustensile")
       }
