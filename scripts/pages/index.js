@@ -185,8 +185,8 @@ function filterRecipes() {
   let resultatRecherche = []
 
   resultatRecherche = recipes.filter(recette => {
-    const searchName = recette.name.includes(criteres.text)
-    const searchDescription = recette.description.includes(criteres.text)
+    const searchName = recette.name.toLowerCase().includes(criteres.text.toLowerCase())
+    const searchDescription = recette.description.toLowerCase().includes(criteres.text.toLowerCase())
     return searchName || searchDescription
   })
 
@@ -260,8 +260,9 @@ searchBar.addEventListener("input", () => {
 
 clearButton.addEventListener("click", () => {
   searchBar.value = ""
+  criteres.text = ""
   clearButton.style.display = "none"
-  displayRecipes(recipes)
+  filterRecipes()
 })
 
 searchInput.forEach((input, index) => {
